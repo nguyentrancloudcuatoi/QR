@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ Thống Hỗ Trợ Học Tập</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <i class="fas fa-graduation-cap"></i>
+            <span>EduSupport</span>
+        </div>
+        <div class="nav-links">
+            <a href="#home" class="active">Trang chủ</a>
+            <a href="#features">Tính năng</a>
+            <a href="#scanner">Quét QR</a>
+            <a href="#resources">Tài nguyên</a>
+        </div>
+        <div class="nav-auth">
+            <div class="logged-out" style="display: none;">
+                <button class="btn-login" onclick="window.location.href='login.html'">Đăng nhập</button>
+                <button class="btn-register" onclick="window.location.href='register.html'">Đăng ký</button>
+            </div>
+            <div class="logged-in" style="display: none;">
+                <button class="btn-logout" onclick="logout()">Đăng xuất</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="overlay"></div>
+        <div class="hero-content">
+            <h1>Khoa học tự nhiên</h1>
+            <p>Giải pháp học tập tương tác cho mọi học sinh</p>
+            <button class="btn-primary btn-large">Khám Phá Ngay</button>
+        </div>
+        <div class="hero-image">
+            <img src="image/background3.jpg" alt="Education illustration" style="width: 600px; height: auto;">
+
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <h2>Tính Năng Nổi Bật</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <i class="fas fa-qrcode"></i>
+                <h3>Quét Mã QR</h3>
+                <p>Truy cập nhanh nội dung học tập</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-brain"></i>
+                <h3>Học Tập Tương Tác</h3>
+                <p>Tương tác trực tiếp với bài giảng</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-universal-access"></i>
+                <h3>Hỗ Trợ Đặc Biệt</h3>
+                <p>Thiết kế phù hợp mọi đối tượng</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-cloud-download-alt"></i>
+                <h3>Tải Tài Liệu</h3>
+                <p>Dễ dàng lưu trữ và chia sẻ</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scanner Section -->
+    <section id="scanner" class="scanner-section">
+        <div class="scanner-container">
+            <div class="scanner-content">
+                <!-- Scanner left side -->
+                <div class="scanner-left">
+                    <h2>Quét mã QR</h2>
+                    <div class="scanner-wrapper">
+                        <video id="webcam" playsinline></video>
+                        <canvas id="canvas" style="display: none;"></canvas>
+                        <div class="scanner-overlay">
+                            <div class="scanner-frame"></div>
+                        </div>
+                    </div>
+                    <div class="scanner-controls">
+                        <button id="startCamera" class="btn-control">
+                            <i class="fas fa-camera"></i> Bắt đầu quét
+                        </button>
+                        <button id="stopCamera" class="btn-control" disabled>
+                            <i class="fas fa-stop"></i> Dừng quét
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Preview right side -->
+                <div class="scanner-right">
+                    <h2>Nội dung</h2>
+                    <div id="content-preview" class="content-preview">
+                        <div class="preview-placeholder">
+                            <i class="fas fa-qrcode"></i>
+                            <p>Quét mã QR để xem nội dung</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="resources">
+        <h2>Tài Nguyên Học Tập</h2>
+        <div class="resource-grid">
+            <div class="resource-card">
+                <div class="resource-preview">
+                    <img src="https://ischool.vn/wp-content/uploads/2023/07/phuong-phap-hoc-toan-hieu-qua-thumb.jpeg" alt="Resource preview">
+                </div>
+                <div class="resource-info">
+                    <h3>KHTN (Toán học)</h3>
+                    <p>Bài tập và tài liệu môn Toán</p>
+                    <button class="btn-download">
+                        <i class="fas fa-download"></i> Tải xuống
+                    </button>
+                </div>
+            </div>
+            <div class="resource-card">
+                <div class="resource-preview">
+                    <img src="http://thcsngoquyencammy.edu.vn/SiteFolders/thcsngoquyen/vatli.png" alt="Resource preview">
+                </div>
+                <div class="resource-info">
+                    <h3>KHTN (Vật lý)</h3>
+                    <p>Bài tập và tài liệu môn Vật lý</p>
+                    <button class="btn-download">
+                        <i class="fas fa-download"></i> Tải xuống
+                    </button>
+                </div>
+            </div>
+            <div class="resource-card">
+                <div class="resource-preview">
+                    <img src="https://ia.edu.vn/wp-content/uploads/2021/03/cach-hoc-hoa-hoc-bang-tieng-anh.jpg" alt="Resource preview">
+                </div>
+                <div class="resource-info">
+                    <h3>KHTN (Hóa học)</h3>
+                    <p>Bài tập và tài liệu môn Hóa học</p>
+                    <button class="btn-download">
+                        <i class="fas fa-download"></i> Tải xuống
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Về chúng tôi</h3>
+                <p>Hệ thống hỗ trợ học tập thông minh cho học sinh hòa nhập</p>
+            </div>
+            <div class="footer-section">
+                <h3>Liên hệ</h3>
+                <p><i class="fas fa-envelope"></i> support@edusupport.com</p>
+                <p><i class="fas fa-phone"></i> 0251 3993018</p>
+            </div>
+            <div class="footer-section">
+                <h3>Theo dõi</h3>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/share/41TUUwnBS9dR7MNu/?mibextid=LQQJ4d"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 EduSupport. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modal Login -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Đăng nhập</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label><i class="fas fa-user"></i> Tên đăng nhập</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-lock"></i> Mật khẩu</label>
+                    <input type="password" required>
+                </div>
+                <button type="submit" class="btn-primary">Đăng nhập</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="scripts.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        // Hàm cập nhật hiển thị nút đăng nhập/đăng xuất
+        function updateAuthButtons() {
+            const loggedInDiv = document.querySelector('.logged-in');
+            const loggedOutDiv = document.querySelector('.logged-out');
+            
+            if (isLoggedIn()) {
+                loggedInDiv.style.display = 'block';
+                loggedOutDiv.style.display = 'none';
+            } else {
+                loggedInDiv.style.display = 'none';
+                loggedOutDiv.style.display = 'block';
+            }
+        }
+
+        // Cập nhật hiển thị khi trang được tải
+        document.addEventListener('DOMContentLoaded', updateAuthButtons);
+    </script>
+</body>
+</html>
